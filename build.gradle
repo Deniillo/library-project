@@ -5,6 +5,7 @@ plugins {
 
 subprojects {
     apply plugin: "com.diffplug.spotless"
+    apply plugin: "pmd"
 
     spotless {
         // optional: limit format enforcement to just the files changed by this feature branch
@@ -40,16 +41,18 @@ subprojects {
     pmd {
         consoleOutput = true
         toolVersion = "7.0.0"
-
-        // minimal rule level priority in each rules
         rulesMinimumPriority = 5
 
-        ruleSets = ["category/java/errorprone.xml",
-                    "category/java/bestpractices.xml"]
+        ruleSets = [
+            "category/java/errorprone.xml",
+            "category/java/bestpractices.xml",
+            "category/java/design.xml",
+            "category/java/security.xml"
+        ]
 
-        // fail build if have problems
         ignoreFailures = false
     }
+
 
     // Check for the Java plugin before applying the toolchain
     if (plugins.hasPlugin('java')) {
