@@ -11,4 +11,5 @@ plugins {
 }
 
 rootProject.name = 'library-project'
-include('app')
+include 'gateway'
+
